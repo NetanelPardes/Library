@@ -1,6 +1,6 @@
-##Library progect
+#Library progect
 
-#Project Objective
+##Project Objective
 
 Our project deals with library management
 The program manages the library's books and subscriptions.
