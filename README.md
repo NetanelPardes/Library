@@ -73,32 +73,32 @@ library-api/
 
 | Method | Endpoint | Description | Request Body | Response |
 |--------|----------|-------------|--------------|----------|
-| POST | /books | Create a book | {"title": title, "author": author, "genre": genre} | None |
-| GET | /books | All books | None | List of book dictionaries | 
-| GET | /books/{id} | Book by id | None | book dictionarie |
-| PATCH | /books/{id} | Update a book | {"title": title, "author": author, "genre": genre} | None |
-| PATCH | /books/{id}/borrow/{member_id} | Loan a book to a member
-| PATCH | /books/{id}/return/{member_id} | Return a book from a member
+| POST | /books | Create a book | {"title": title,"author": author,"genre": genre} |  |
+| GET | /books | All books |  | List of book dictionaries | 
+| GET | /books/{id} | Book by id |  | book dictionarie |
+| PATCH | /books/{id} | Update a book | {"title": title, "author": author, "genre": genre} |  |
+| PATCH | /books/{id}/borrow/{member_id} | Loan a book to a member | |{"message": "Book id borrow to a member id"} |
+| PATCH | /books/{id}/return/{member_id} | Return a book from a member | |{"message": "Book id returned from member id"}|
 
 ### Members Endpoints
 
 | Method | Endpoint | Description | Request Body | Response |
 |--------|----------|-------------|--------------|----------|
-| POST | /members | Create member 
-| GET | /members | All members
-| GET | /members/{id} | Member by ID
-| PATCH | /members/{id} | Update member
-| PATCH | /members/{id}/deactivate | Deactivate member
-| PATCH | /members/{id}/activate | Activate member
+| POST | /members | Create member | {"name": name,"email": email}| |
+| GET | /members | All members | | List of Member dictionaries |
+| GET | /members/{id} | Member by ID | | Member dictionarie |
+| PATCH | /members/{id} | Update member | {"name": name,"email": email}||
+| PATCH | /members/{id}/deactivate | Deactivate member | | {"message": "Member id inactive"} |
+| PATCH | /members/{id}/activate | Activate member | |{"message": "Member id active"}|
 
 
 ### Reports Endpoints
 
 | Method | Endpoint | Description | Request Body | Response |
 |--------|----------|-------------|--------------|----------|
-| GET | /reports/summary | General Report
-| GET | /reports/books-by-genre | Books by Genre
-| GET | /reports/top-member | Most Active Member
+| GET | /reports/summary | General Report | | |
+| GET | /reports/books-by-genre | Books by Genre | |{"genre": genre , "Books" : {List of books}}|
+| GET | /reports/top-member | Most Active Member | |{"message": "Member id Most active"} |
 
 
 ## System Flow
