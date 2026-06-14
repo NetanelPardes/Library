@@ -75,8 +75,17 @@ class Member:
     def activate_member(self,id):
         pass
     
-    def increment_borrows(self,id):
-        pass
+    def increment_borrows(id):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("UPDATE members set total_borrows = total_borrows + 1 WHERE id = %s",(id,))
+        conn.commit()
+        changed = cursor.rowcount > 0
+
+        cursor.close()
+        conn.close()
+
+        return changed
       
     def count_active_members(self):
         pass
@@ -90,6 +99,7 @@ class Member:
 
         cursor.execute("SELECT * FROM members WHERE id = %s AND is_active = %s" , (id,1))
 
+
         member = cursor.fetchall()
 
         cursor.close()
@@ -97,11 +107,11 @@ class Member:
 
         return member
     
-    def can_borrow(self,id):
+    def can_borrow(self,member_id):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM members WHERE id = %s AND total_borrowa < %s" , (id,4))
+        cursor.execute("SELECT COUNT(*) as total FROM books WHERE borrowed_by_member_id = %s HAVING tatal < 4" , (member_id,))
 
         member = cursor.fetchall()
 

@@ -34,7 +34,25 @@ def borrow_book(id:int, member_id:int):
     if my_book.get_book_by_id(id):
         if my_member.get_member_by_id(member_id):
             if my_member.is_active(member_id):
-                pass
+                if my_book.can_borrow(member_id):
+                    try:
+                        my_book.set_available(id,True,member_id)
+                        return {
+                            "message": "Book borrowed successfully",
+                            "book_id": id,
+                            "member_id": member_id
+                        }
+                    except:
+                        raise HTTPException(status_code=404, detail="There is a problem.")
+                else:
+                    raise HTTPException(status_code=404, detail="The friend cannot borrow a book.")
+            else:
+                raise HTTPException(status_code=404, detail="The member is inactive.")
+        else:
+            raise HTTPException(status_code=404, detail="The friend does not exist.")
+    else:
+        raise HTTPException(status_code=404, detail="The book does not exist.")
 
 
-#@router.put("/books/{id}/return/{member_id}")
+
+
