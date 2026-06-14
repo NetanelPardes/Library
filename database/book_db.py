@@ -90,11 +90,11 @@ class Book:
     def count_active_borrows_by_member(self,member_id):
         pass
 
-    def book_available(id):
+    def book_available(self,id):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM books WHERE is_available = %s" , (1,))
+        cursor.execute("SELECT * FROM books WHERE id = %s AND is_available = %s" , (id,1))
 
         book = cursor.fetchall()
 

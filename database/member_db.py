@@ -38,10 +38,36 @@ class Member:
         return all_members
     
     def get_member_by_id(self,id):
-        pass
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM members WHERE id = %s" , (id,))
+
+        member = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return member
     
     def update_member(self,id, data):
-        pass
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        set_parts = [f"{key} = %s" for key in data.keys()]
+        set_cluse = " ,".join(set_parts)
+        sql = f"UPDATE members set {set_cluse} WHERE id = %s"
+        val = list(data.values()) + [id]
+        cursor.execute(sql,val)
+
+        conn.commit()
+
+        changed = cursor.rowcount > 0
+
+        cursor.close()
+        conn.close()
+
+        return changed
     
     def deactivate_member(self,id):
         pass
@@ -58,3 +84,28 @@ class Member:
     def get_top_member(self):
         pass
     
+    def is_active(self,id):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM members WHERE id = %s AND is_active = %s" , (id,1))
+
+        member = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return member
+    
+    def can_borrow(self,id):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM members WHERE id = %s AND total_borrowa < %s" , (id,4))
+
+        member = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return member
