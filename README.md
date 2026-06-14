@@ -11,7 +11,7 @@ The program manages the library's books and subscriptions.
 Open the Docker software on your computer.
 ```
 ```bash
-docker run --name mysql-library -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=library_db -p 3306:3306 -d mysql:8
+docker run --name mysql_library -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=library_db -p 3306:3306 -d mysql:8
 ```
 ## Folder structure
 ```
