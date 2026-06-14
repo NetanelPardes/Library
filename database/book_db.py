@@ -1,17 +1,17 @@
 import mysql.connector
 from fastapi import HTTPException
-from database.db_connection import get_connection
+from database.db_connection import DBconnection
 from database.member_db import Member
 
 optional_genre =  ['Fiction' , 'Non-Fiction' , 'Science' , 'History' , 'Other']
 
 class Book:
     def __init__(self):
-        pass
+        self.db = DBconnection()
     
     def create_book(self,data):
         if data['genre'] in optional_genre:
-            conn = get_connection()
+            conn = self.db.get_connection()
             cursor = conn.cursor()
 
             cursor.execute("INSERT INTO books (title , author , genre , is_available) VALUES (%s, %s, %s, %s)" ,(data['title'],data['author'], data['genre'],True))
@@ -28,7 +28,7 @@ class Book:
         raise HTTPException(status_code=404, detail="The book definition is incorrect.")
             
     def get_all_books(self):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT * FROM books")
@@ -41,7 +41,7 @@ class Book:
         return all_books
 
     def get_book_by_id(self,id):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT * FROM books WHERE id = %s" , (id,))
@@ -73,7 +73,7 @@ class Book:
         return changed
 
     def set_available(self, id, val, member_id):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         if val == True:
@@ -99,7 +99,7 @@ class Book:
         return changed
 
     def count_total_books(self):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT count(*) as total FROM books")
@@ -112,7 +112,7 @@ class Book:
         return books["total"]
 
     def count_available_books(self):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT count(*) as total FROM books WHERE is_available = TRUE")
@@ -125,7 +125,7 @@ class Book:
         return books["total"]
 
     def count_borrowed_books(self):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT count(*) as total FROM books WHERE is_available = FALSE")
@@ -138,7 +138,7 @@ class Book:
         return books["total"]
 
     def count_by_genre(self,genre):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT genre ,count(*) as total FROM books WHERE genre = %s GROUP BY genre" ,(genre,))
@@ -151,7 +151,7 @@ class Book:
         return member
 
     def count_of_genres(self):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT genre ,count(*) as total FROM books GROUP BY genre")
@@ -164,7 +164,7 @@ class Book:
         return member
 
     def count_active_borrows_by_member(self, member_id):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("""
@@ -181,7 +181,7 @@ class Book:
         return result["total"]
         
     def book_borrow_to_member(self,id, member_id):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT * FROM books WHERE id = %s AND borrowed_by_member_id = %s" , (id,member_id))

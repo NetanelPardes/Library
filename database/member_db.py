@@ -1,6 +1,6 @@
 import mysql.connector
 from fastapi import HTTPException
-from database.db_connection import get_connection
+from database.db_connection import DBconnection
 
 class Member:
     def __init__(self,name =None,email=None):
@@ -8,9 +8,10 @@ class Member:
         self.email = email
         self.is_active = True
         self.total_borrows = 0
+        self.db = DBconnection()
 
     def create_member(self,data):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor()
 
         cursor.execute("INSERT INTO members (name , email , is_active , total_borrows) VALUES (%s, %s, %s, %s)" ,(data['name'],data['email'], True,0))
@@ -25,7 +26,7 @@ class Member:
         return new_id
 
     def get_all_members(self):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT * FROM members")
@@ -38,7 +39,7 @@ class Member:
         return all_members
     
     def get_member_by_id(self,id):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT * FROM members WHERE id = %s" , (id,))
@@ -51,7 +52,7 @@ class Member:
         return member
     
     def update_member(self,id, data):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         set_parts = [f"{key} = %s" for key in data.keys()]
@@ -70,7 +71,7 @@ class Member:
         return changed
     
     def deactivate_member(self,id):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("UPDATE members set is_active = FALSE WHERE id = %s",(id,))
         conn.commit()
@@ -82,7 +83,7 @@ class Member:
         return changed
     
     def activate_member(self,id):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("UPDATE members set is_active = TRUE WHERE id = %s",(id,))
         conn.commit()
@@ -93,8 +94,8 @@ class Member:
 
         return changed
     
-    def increment_borrows(id):
-        conn = get_connection()
+    def increment_borrows(self,id):
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("UPDATE members set total_borrows = total_borrows + 1 WHERE id = %s",(id,))
         conn.commit()
@@ -106,7 +107,7 @@ class Member:
         return changed
       
     def count_active_members(self):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT count(*) AS total FROM members WHERE is_active = TRUE")
@@ -119,7 +120,7 @@ class Member:
         return member["total"]
     
     def get_top_member(self):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT * FROM members ORDER BY total_borrows DESC")
@@ -132,7 +133,7 @@ class Member:
         return member[0]
     
     def is_active(self,id):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT * FROM members WHERE id = %s AND is_active = %s" , (id,1))
@@ -146,7 +147,7 @@ class Member:
         return member
     
     def can_borrow(self,member_id):
-        conn = get_connection()
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT COUNT(*) as total FROM books WHERE borrowed_by_member_id = %s HAVING tatal < 4" , (member_id,))
