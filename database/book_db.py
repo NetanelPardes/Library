@@ -41,7 +41,17 @@ class Book:
         return all_books
 
     def get_book_by_id(self,id):
-        pass
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM books WHERE id = %s" , (id,))
+
+        book = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return book
 
     def update_book(self,id, data):
         pass
