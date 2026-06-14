@@ -4,6 +4,9 @@ from database.db_connection import DBconnection
 
 class Member:
     def __init__(self,name =None,email=None):
+        """
+        Initializes the Member database handler.
+        """
         self.name = name
         self.email = email
         self.is_active = True
@@ -11,6 +14,9 @@ class Member:
         self.db = DBconnection()
 
     def create_member(self,data):
+        """
+        Creates a new member in the members table.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor()
 
@@ -26,6 +32,9 @@ class Member:
         return new_id
 
     def get_all_members(self):
+        """
+        Returns all members from the members table.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -39,6 +48,9 @@ class Member:
         return all_members
     
     def get_member_by_id(self,id):
+        """
+        Returns a single member by its ID.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -52,6 +64,9 @@ class Member:
         return member
     
     def update_member(self,id, data):
+        """
+        Updates the given fields of a member by its ID.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -71,6 +86,9 @@ class Member:
         return changed
     
     def deactivate_member(self,id):
+        """
+        Deactivates a member by setting is_active to False.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("UPDATE members set is_active = FALSE WHERE id = %s",(id,))
@@ -83,6 +101,9 @@ class Member:
         return changed
     
     def activate_member(self,id):
+        """
+        Activates a member by setting is_active to True.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("UPDATE members set is_active = TRUE WHERE id = %s",(id,))
@@ -95,6 +116,9 @@ class Member:
         return changed
     
     def increment_borrows(self,id):
+        """
+        Increases the total borrow counter of a member by one.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("UPDATE members set total_borrows = total_borrows + 1 WHERE id = %s",(id,))
@@ -107,6 +131,9 @@ class Member:
         return changed
       
     def count_active_members(self):
+        """
+        Returns the number of active members.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -120,6 +147,9 @@ class Member:
         return member["total"]
     
     def get_top_member(self):
+        """
+        Returns the member with the highest total borrow count.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -133,6 +163,9 @@ class Member:
         return member[0]
     
     def is_active(self,id):
+        """
+        Checks if a member is currently active.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -147,6 +180,9 @@ class Member:
         return member
     
     def can_borrow(self,member_id):
+        """
+        Checks if a member can borrow another book.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 

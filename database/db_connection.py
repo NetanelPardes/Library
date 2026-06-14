@@ -8,6 +8,9 @@ class DBconnection:
         self.password = 'root'
         self.database = 'library_db'
     def get_connection(self):
+        """
+        Creates and returns a new MySQL database connection.
+        """
         return mysql.connector.connect(
             host = self.host,
             port = self.port,
@@ -17,6 +20,9 @@ class DBconnection:
         )
 
     def create_tables(self):
+        """
+        Creates the books and members tables if they do not already exist.
+        """
         conn = self.get_connection()
         cursor = conn.cursor()
         cursor.execute("""

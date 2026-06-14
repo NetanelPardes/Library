@@ -7,9 +7,15 @@ optional_genre =  ['Fiction' , 'Non-Fiction' , 'Science' , 'History' , 'Other']
 
 class Book:
     def __init__(self):
+        """
+        Initializes the Book database handler.
+        """
         self.db = DBconnection()
     
     def create_book(self,data):
+        """
+        Creates a new book in the books table.
+        """
         if data['genre'] in optional_genre:
             conn = self.db.get_connection()
             cursor = conn.cursor()
@@ -28,6 +34,9 @@ class Book:
         raise HTTPException(status_code=404, detail="The book definition is incorrect.")
             
     def get_all_books(self):
+        """
+        Returns all books from the books table.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -41,6 +50,9 @@ class Book:
         return all_books
 
     def get_book_by_id(self,id):
+        """
+        Returns a single book by its ID.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -54,7 +66,10 @@ class Book:
         return book
 
     def update_book(self,id, data):
-        conn = get_connection()
+        """
+        Updates the given fields of a book by its ID.
+        """
+        conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
         set_parts = [f"{key} = %s" for key in data.keys()]
@@ -73,6 +88,9 @@ class Book:
         return changed
 
     def set_available(self, id, val, member_id):
+        """
+        Updates a book availability status for borrow or return actions.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -99,6 +117,9 @@ class Book:
         return changed
 
     def count_total_books(self):
+        """
+        Returns the total number of books in the database.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -112,6 +133,9 @@ class Book:
         return books["total"]
 
     def count_available_books(self):
+        """
+        Returns the number of currently available books.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -125,6 +149,9 @@ class Book:
         return books["total"]
 
     def count_borrowed_books(self):
+        """
+        Returns the number of currently borrowed books.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -138,6 +165,9 @@ class Book:
         return books["total"]
 
     def count_by_genre(self,genre):
+        """
+        Returns the number of books for a specific genre.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -151,6 +181,9 @@ class Book:
         return member
 
     def count_of_genres(self):
+        """
+        Returns the number of books grouped by genre.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -164,6 +197,9 @@ class Book:
         return member
 
     def count_active_borrows_by_member(self, member_id):
+        """
+        Returns how many books the member is currently borrowing.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
@@ -181,6 +217,9 @@ class Book:
         return result["total"]
         
     def book_borrow_to_member(self,id, member_id):
+        """
+        Checks if a specific book is borrowed by a specific member.
+        """
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 

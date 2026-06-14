@@ -6,14 +6,23 @@ my_member = Member()
 
 @router.post("/members")
 def new_member(new_member:dict):
+    """
+    Handles creating a new member.
+    """
     return {"member created with id" :my_member.create_member(new_member)}
 
 @router.get("/members")
 def show_all_members():
+    """
+    Handles returning all members.
+    """
     return {"members" : my_member.get_all_members()}
 
 @router.get("/members/{id}")
 def get_member_by_id(id:int):
+    """
+    Handles returning a member by ID.
+    """
     member = my_member.get_member_by_id(id)
     if not member:
         raise HTTPException(status_code=404,detail="There is no such member id.")
@@ -21,6 +30,9 @@ def get_member_by_id(id:int):
 
 @router.put("/members/{id}")
 def update_member(id:int, new_data:dict):
+    """
+    Handles updating a member by ID.
+    """
     update = my_member.update_member(id, new_data)
     if not update:
         raise HTTPException(status_code=404,detail="There is no such member id.")
@@ -28,6 +40,9 @@ def update_member(id:int, new_data:dict):
 
 @router.put("/members/{id}/deactivate")
 def deactivate_member(id:int):
+    """
+    Handles deactivating a member.
+    """
     member = my_member.deactivate_member(id)
     if not member:
         raise HTTPException(status_code=404, detail="It doesn't work.")
@@ -35,6 +50,9 @@ def deactivate_member(id:int):
 
 @router.put("/members/{id}/activate")
 def activate_member(id:int ):
+    """
+    Handles activating a member.
+    """
     member = my_member.activate_member(id)
     if not member:
         raise HTTPException(status_code=404, detail="It doesn't work.")
