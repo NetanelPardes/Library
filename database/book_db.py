@@ -93,6 +93,8 @@ class Book:
         cursor.close()
         conn.close()
 
+
+
     
 
 
@@ -117,6 +119,19 @@ class Book:
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT count(*) FROM members WHERE id = %s AND total_borrows < %s" , (id,4))
+
+        member = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return member
+    
+    def book_borrow_to_member(self,id, member_id):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM books WHERE id = %s AND borrowed_by_member_id = %s" , (id,member_id))
 
         member = cursor.fetchall()
 

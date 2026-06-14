@@ -25,3 +25,17 @@ def update_member(id:int, new_data:dict):
     if not update:
         raise HTTPException(status_code=404,detail="There is no such member id.")
     return {"member updated" : id}
+
+@router.put("/members/{id}/deactivate")
+def deactivate_member(id:int):
+    member = my_member.deactivate_member(id)
+    if not member:
+        raise HTTPException(status_code=404, detail="It doesn't work.")
+    return {"member deactivate": id}
+
+@router.put("/members/{id}/activate")
+def activate_member(id:int):
+    member = my_member.activate_member(id)
+    if not member:
+        raise HTTPException(status_code=404, detail="It doesn't work.")
+    return {"member activate": id}
