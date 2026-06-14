@@ -29,7 +29,7 @@ def create_tables():
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     name varchar(50) NOT NULL,
                     email varchar(50) NOT NULL UNIQUE,
-                    active_is BOOLEAN DEFAULT TRUE,
+                    is_active BOOLEAN DEFAULT TRUE,
                     total_borrows INT DEFAULT 0
                    )
                    """)

@@ -54,7 +54,23 @@ class Book:
         return book
 
     def update_book(self,id, data):
-        pass
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        set_parts = [f"{key} = %s" for key in data.keys()]
+        set_cluse = " ,".join(set_parts)
+        sql = f"UPDATE books set {set_cluse} WHERE id = %s"
+        val = list(data.values()) + [id]
+        cursor.execute(sql,val)
+
+        conn.commit()
+
+        changed = cursor.rowcount > 0
+
+        cursor.close()
+        conn.close()
+
+        return changed
 
     def set_available(self,id, val, member_id):
         pass
@@ -73,3 +89,16 @@ class Book:
 
     def count_active_borrows_by_member(self,member_id):
         pass
+
+    def book_available(id):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM books WHERE is_available = %s" , (1,))
+
+        book = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return book

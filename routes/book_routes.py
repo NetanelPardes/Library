@@ -20,3 +20,16 @@ def get_book_by_id(id:int):
         raise HTTPException(status_code=404,detail="There is no such book id.")
     return{"book" :book}
 
+@router.put("/books/{id}")
+def update_book(id:int, new_data:dict):
+    update = my_book.update_book(id, new_data)
+    if not update:
+        raise HTTPException(status_code=404,detail="There is no such book id.")
+    return {"Book updated" : id}
+
+# @router.put("/books/{id}/borrow/{member_id}")
+# def borrow_book(id:int, member_id:int):
+#     if my_book.get_book_by_id(id):
+
+
+#@router.put("/books/{id}/return/{member_id}")
