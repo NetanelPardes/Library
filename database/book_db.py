@@ -1,15 +1,20 @@
 import mysql.connector
+from database.db_connection import get_connection
+
+optional_genre =  ['Fiction' , 'Non-Fiction' , 'Science' , 'History' , 'Other']
 
 class Book:
-    def __init__(self,title,author,genre):
-        self.title = title
-        self.author = author
-        self.genre = genre
-        self.is_available = True
-        self.borrowed_by_member_id = NULL
+    def __init__(self):
+        self.connection = get_connection()
     
     def create_book(self,data):
-        pass
+        if data['genre'] in optional_genre:
+            cursor = self.connection.cursor()
+            cursor.execute("INSERT INTO books (title , author , genre , is_available) VALUES (%s, %s, %s, %s)" ,(data['title'],data['author'], data['genre'],True))
+            self.connection.commit()
+            cursor.close()
+            self.connection.close()
+            
 
     def get_all_books(self):
         pass

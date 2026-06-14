@@ -18,8 +18,8 @@ def create_tables():
                     title varchar(50) NOT NULL,
                     author varchar(50) NOT NULL,
                     genre ENUM('Fiction','Non-Fiction','Science','History','Other'),
-                    available_is BOOLEAN DEFAULT FALSE,
-                    id_member_by_borrowed INT DEFAULT NULL
+                    is_available BOOLEAN DEFAULT FALSE,
+                    borrowed_by_member_id INT DEFAULT NULL
                    )
                    """)
     conn.commit()
@@ -30,7 +30,7 @@ def create_tables():
                     name varchar(50) NOT NULL,
                     email varchar(50) NOT NULL UNIQUE,
                     active_is BOOLEAN DEFAULT TRUE,
-                    borrows_total INT DEFAULT 0
+                    total_borrows INT DEFAULT 0
                    )
                    """)
     conn.commit()
