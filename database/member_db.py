@@ -137,3 +137,6 @@ class Member:
         conn.close()
 
         return member
+    
+    def can_borrow(self,id):
+        

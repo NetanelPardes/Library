@@ -93,32 +93,24 @@ class Book:
         cursor.close()
         conn.close()
 
-
-
-    
-
-
     def count_total_books(self):
-        pass
-
-    def count_available_books(self):
-        pass
-
-    def count_borrowed_books(self):
-        pass
-
-    def count_by_genre(self,genre):
-        pass
-
-    def count_active_borrows_by_member(self,member_id):
-        pass
-        
-    
-    def can_borrow(self,id):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT count(*) FROM members WHERE id = %s AND total_borrows < %s" , (id,4))
+        cursor.execute("SELECT count(*) as total FROM books")
+
+        books = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return books
+
+    def count_available_books(self):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT count(*) as total FROM books WHERE is_available = TRUE")
 
         member = cursor.fetchall()
 
@@ -126,7 +118,59 @@ class Book:
         conn.close()
 
         return member
-    
+
+    def count_borrowed_books(self):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT count(*) as total FROM books WHERE is_available = FALSE")
+
+        member = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return member
+
+    def count_by_genre(self,genre):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT genre ,count(*) as total FROM books WHERE genre = %s GROUP BY genre" ,(genre,))
+
+        member = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return member
+
+    def count_of_genres(self):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT genre ,count(*) as total FROM books GROUP BY genre")
+
+        member = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return member
+
+    def count_active_borrows_by_member(self,member_id):
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT count(*) FROM members WHERE id = %s AND total_borrows < %s" , (member_id,4))
+
+        member = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return member
+        
     def book_borrow_to_member(self,id, member_id):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)

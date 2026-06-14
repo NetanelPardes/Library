@@ -34,7 +34,7 @@ def deactivate_member(id:int):
     return {"member deactivate": id}
 
 @router.put("/members/{id}/activate")
-def activate_member(id:int):
+def activate_member(id:int ):
     member = my_member.activate_member(id)
     if not member:
         raise HTTPException(status_code=404, detail="It doesn't work.")
