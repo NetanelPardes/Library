@@ -82,7 +82,16 @@ class Member:
         return changed
     
     def activate_member(self,id):
-        pass
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("UPDATE members set is_active = TRUE WHERE id = %s",(id,))
+        conn.commit()
+        changed = cursor.rowcount > 0
+
+        cursor.close()
+        conn.close()
+
+        return changed
     
     def increment_borrows(id):
         conn = get_connection()
