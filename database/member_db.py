@@ -3,7 +3,7 @@ from fastapi import HTTPException
 from database.db_connection import get_connection
 
 class Member:
-    def __init__(self,name,email):
+    def __init__(self,name =None,email=None):
         self.name = name
         self.email = email
         self.is_active = True
