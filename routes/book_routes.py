@@ -29,25 +29,26 @@ def update_book(id:int, new_data:dict):
         raise HTTPException(status_code=404,detail="There is no such book id.")
     return {"Book updated" : id}
 
-@router.put("/books/{id}/borrow/{member_id}")
+@router.put("/books/{id}/borrow/{member_id}",status_code=200)
 def borrow_book(id:int, member_id:int):
-    if my_book.get_book_by_id(id):
+    book = my_book.get_book_by_id(id)
+    if book:
         if my_member.get_member_by_id(member_id):
             if my_member.is_active(member_id):
-                if my_book.count_active_borrows_by_member(member_id):
-                    try:
+                if my_book.count_active_borrows_by_member(member_id) < 3:
+                    if book["is_available"]:     
                         my_book.set_available(id,True,member_id)
                         return {
                             "message": "Book borrowed successfully",
                             "book_id": id,
                             "member_id": member_id
                         }
-                    except:
-                        raise HTTPException(status_code=404, detail="There is a problem.")
+                    else:
+                       raise HTTPException(status_code=400, detail="Book is not available")
                 else:
-                    raise HTTPException(status_code=404, detail="The friend cannot borrow a book.")
+                    raise HTTPException(status_code=400,detail="Member has reached maximum borrows")
             else:
-                raise HTTPException(status_code=404, detail="The member is inactive.")
+                raise HTTPException(status_code=400, detail="The member is inactive.")
         else:
             raise HTTPException(status_code=404, detail="The friend does not exist.")
     else:
@@ -59,17 +60,14 @@ def return_book(id:int , member_id:int):
     if my_book.get_book_by_id(id):
         if my_member.get_member_by_id(member_id):
             if my_book.book_borrow_to_member(id, member_id):
-                try:
-                    my_book.set_available(id,False,member_id)
-                    return {
-                        "message": "Book return successfully",
-                        "book_id": id,
-                        "member_id": member_id
-                        }
-                except:
-                    raise HTTPException(status_code=404, detail="There is a problem.")
+                my_book.set_available(id,False,member_id)
+                return {
+                    "message": "Book return successfully",
+                    "book_id": id,
+                    "member_id": member_id
+                    }
             else:
-                    raise HTTPException(status_code=404, detail="This book is not lent to a friend.")
+                raise HTTPException(status_code=400, detail="This book is not lent to a friend.")
         else:
             raise HTTPException(status_code=404, detail="The friend does not exist.")
     else:

@@ -3,7 +3,6 @@ from fastapi import HTTPException
 from database.db_connection import get_connection
 from database.member_db import Member
 
-print("hello")
 optional_genre =  ['Fiction' , 'Non-Fiction' , 'Science' , 'History' , 'Other']
 
 class Book:
@@ -47,7 +46,7 @@ class Book:
 
         cursor.execute("SELECT * FROM books WHERE id = %s" , (id,))
 
-        book = cursor.fetchall()
+        book = cursor.fetchone()
 
         cursor.close()
         conn.close()
@@ -73,25 +72,31 @@ class Book:
 
         return changed
 
-    def set_available(self,id, val, member_id):
+    def set_available(self, id, val, member_id):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
         if val == True:
-            cursor.execute("UPDATE books set is_available = FALSE , borrowed_by_member_id = %s WHERE id = %s",(member_id,id))
+            cursor.execute(
+                "UPDATE books SET is_available = FALSE, borrowed_by_member_id = %s WHERE id = %s",
+                (member_id, id)
+            )
             conn.commit()
             Member.increment_borrows(member_id)
-            return {
-            "message": "Book borrowed successfully",
-            "book_id": id,
-            "member_id": member_id
-            }
-        if val == False:
-            cursor.execute("UPDATE books set is_available = TRUE , borrowed_by_member_id = NULL WHERE id = %s",(id,))
+            changed = cursor.rowcount > 0
+
+        else:
+            cursor.execute(
+                "UPDATE books SET is_available = TRUE, borrowed_by_member_id = NULL WHERE id = %s",
+                (id,)
+            )
             conn.commit()
+            changed = cursor.rowcount > 0
 
         cursor.close()
         conn.close()
+
+        return changed
 
     def count_total_books(self):
         conn = get_connection()
@@ -99,12 +104,12 @@ class Book:
 
         cursor.execute("SELECT count(*) as total FROM books")
 
-        books = cursor.fetchall()
+        books = cursor.fetchone()
 
         cursor.close()
         conn.close()
 
-        return books
+        return books["total"]
 
     def count_available_books(self):
         conn = get_connection()
@@ -112,12 +117,12 @@ class Book:
 
         cursor.execute("SELECT count(*) as total FROM books WHERE is_available = TRUE")
 
-        member = cursor.fetchall()
+        books = cursor.fetchone()
 
         cursor.close()
         conn.close()
 
-        return member
+        return books["total"]
 
     def count_borrowed_books(self):
         conn = get_connection()
@@ -125,12 +130,12 @@ class Book:
 
         cursor.execute("SELECT count(*) as total FROM books WHERE is_available = FALSE")
 
-        member = cursor.fetchall()
+        books = cursor.fetchone()
 
         cursor.close()
         conn.close()
 
-        return member
+        return books["total"]
 
     def count_by_genre(self,genre):
         conn = get_connection()
@@ -158,18 +163,22 @@ class Book:
 
         return member
 
-    def count_active_borrows_by_member(self,member_id):
+    def count_active_borrows_by_member(self, member_id):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT count(*) FROM members WHERE id = %s AND total_borrows < %s" , (member_id,4))
+        cursor.execute("""
+            SELECT COUNT(*) AS total
+            FROM books
+            WHERE borrowed_by_member_id = %s
+        """, (member_id,))
 
-        member = cursor.fetchall()
+        result = cursor.fetchone()
 
         cursor.close()
         conn.close()
 
-        return member
+        return result["total"]
         
     def book_borrow_to_member(self,id, member_id):
         conn = get_connection()
@@ -177,7 +186,7 @@ class Book:
 
         cursor.execute("SELECT * FROM books WHERE id = %s AND borrowed_by_member_id = %s" , (id,member_id))
 
-        member = cursor.fetchall()
+        member = cursor.fetchone()
 
         cursor.close()
         conn.close()

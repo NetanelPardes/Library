@@ -3,7 +3,7 @@ from fastapi import HTTPException
 from database.db_connection import get_connection
 
 class Member:
-    def __int__(self,name,email):
+    def __init__(self,name,email):
         self.name = name
         self.email = email
         self.is_active = True
@@ -43,7 +43,7 @@ class Member:
 
         cursor.execute("SELECT * FROM members WHERE id = %s" , (id,))
 
-        member = cursor.fetchall()
+        member = cursor.fetchone()
 
         cursor.close()
         conn.close()
@@ -106,10 +106,30 @@ class Member:
         return changed
       
     def count_active_members(self):
-        pass
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT count(*) AS total FROM members WHERE is_active = TRUE")
+
+        member = cursor.fetchone()
+
+        cursor.close()
+        conn.close()
+
+        return member["total"]
     
     def get_top_member(self):
-        pass
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM members ORDER BY total_borrows DESC")
+
+        member = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return member[0]
     
     def is_active(self,id):
         conn = get_connection()
@@ -118,7 +138,7 @@ class Member:
         cursor.execute("SELECT * FROM members WHERE id = %s AND is_active = %s" , (id,1))
 
 
-        member = cursor.fetchall()
+        member = cursor.fetchone()
 
         cursor.close()
         conn.close()
@@ -138,5 +158,3 @@ class Member:
 
         return member
     
-    def can_borrow(self,id):
-        
