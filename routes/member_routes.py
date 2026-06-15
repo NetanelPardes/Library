@@ -14,8 +14,8 @@ def new_member(new_member:dict):
     """
     Handles creating a new member.
     """
-    logger.info("")
-    logger.info("")
+    logger.info("Request to add a new member has been received.")
+    logger.info("New member created successfully")
     return {"member created with id" :my_member.create_member(new_member)}
 
 @router.get("/members")
@@ -23,8 +23,8 @@ def show_all_members():
     """
     Handles returning all members.
     """
-    logger.info("")
-    logger.info("")
+    logger.info("A request to show all members has been received.")
+    logger.info("All members have been successfully introduced.")
     return {"members" : my_member.get_all_members()}
 
 @router.get("/members/{id}")
@@ -32,12 +32,12 @@ def get_member_by_id(id:int):
     """
     Handles returning a member by ID.
     """
-    logger.info("")
+    logger.info("Request to show friend ID received")
     member = my_member.get_member_by_id(id)
     if not member:
-        logger.error("")
+        logger.error("%s does not exist in the system" , id)
         raise HTTPException(status_code=404,detail="There is no such member id.")
-    logger.info("")
+    logger.info("The member was successfully introduced.")
     return{"member" :member}
 
 @router.put("/members/{id}")
@@ -45,12 +45,12 @@ def update_member(id:int, new_data:dict):
     """
     Handles updating a member by ID.
     """
-    logger.info("")
+    logger.info("A request to update a member has been received.")
     update = my_member.update_member(id, new_data)
     if not update:
-        logger.error("")
+        logger.error("%s member does not exist in the system.",id)
         raise HTTPException(status_code=404,detail="There is no such member id.")
-    logger.info("")
+    logger.info("The member was successfully updated.")
     return {"member updated" : id}
 
 @router.put("/members/{id}/deactivate")
@@ -58,12 +58,12 @@ def deactivate_member(id:int):
     """
     Handles deactivating a member.
     """
-    logger.info("")
+    logger.info("A request to make a member inactive has been received.")
     member = my_member.deactivate_member(id)
     if not member:
-        logger.error("")
+        logger.error("%s member does not exist in the system.",id)
         raise HTTPException(status_code=404, detail="It doesn't work.")
-    logger.info("")
+    logger.info("The member %s is inactive.",id)
     return {"member deactivate": id}
 
 @router.put("/members/{id}/activate")
@@ -71,10 +71,10 @@ def activate_member(id:int ):
     """
     Handles activating a member.
     """
-    logger.info("")
+    logger.info("A request to become an active member has been received.")
     member = my_member.activate_member(id)
     if not member:
-        logger.error("")
+        logger.error("%s member does not exist in the system.",id)
         raise HTTPException(status_code=404, detail="It doesn't work.")
-    logger.info("")
+    logger.info("The member %s is active.",id)
     return {"member activate": id}
