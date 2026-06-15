@@ -111,9 +111,9 @@ def return_book(id:int , member_id:int):
                 logger.error("The book %s is not on loan to member %s.",id ,member_id)
                 raise HTTPException(status_code=400, detail="This book is not lent to a friend.")
         else:
-            logger.error(""The member %s does not exist." , member_id")
+            logger.error("The member %s does not exist." , member_id)
             raise HTTPException(status_code=404, detail="The friend does not exist.")
     else:
-        logger.error(""The book %s does not exist." ,id")
+        logger.error("The book %s does not exist." ,id)
         raise HTTPException(status_code=404, detail="The book does not exist.")
 
