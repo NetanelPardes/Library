@@ -64,7 +64,7 @@ def borrow_book(id:int, member_id:int):
     book = my_book.get_book_by_id(id)
     if book:
         if my_member.get_member_by_id(member_id):
-            if my_member.is_active(member_id):
+            if my_member.is_member_active(member_id):
                 if my_book.count_active_borrows_by_member(member_id) < 3:
                     if book["is_available"]:     
                         my_book.set_available(id,True,member_id)

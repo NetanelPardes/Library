@@ -1,4 +1,95 @@
-2026-06-15 10:33:21,467 | INFO |A request to display all books has been received.
-2026-06-15 10:33:21,467 | INFO |All books are displayed successfully.
-2026-06-15 10:33:47,372 | INFO |A request has been received to display a book by id.
-2026-06-15 10:33:47,444 | INFO |The book 13 was successfully submitted.
+
+2026-06-15 10:36:31,538 | INFO | package: mysql.connector.plugins
+2026-06-15 10:36:31,538 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:36:31,538 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:36:32,489 | INFO | package: mysql.connector.plugins
+2026-06-15 10:36:32,490 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:36:32,490 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:36:42,095 | INFO | A request to display all books has been received.
+2026-06-15 10:36:42,095 | INFO | All books are displayed successfully.
+2026-06-15 10:36:50,726 | INFO | A request has been received to display a book by id.
+2026-06-15 10:36:50,788 | INFO | The book 13 was successfully submitted.
+2026-06-15 10:37:35,745 | INFO | A request for a new book has been received.
+2026-06-15 10:37:35,745 | INFO | New book created successfully
+2026-06-15 10:38:41,847 | INFO | A request to update a book has been received.
+2026-06-15 10:38:41,920 | INFO | Book 3 updated successfully
+2026-06-15 10:39:01,391 | INFO | A request to lend a book to a member has been received.
+2026-06-15 10:39:39,444 | INFO | package: mysql.connector.plugins
+2026-06-15 10:39:39,444 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:39:39,444 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:41:45,557 | INFO | package: mysql.connector.plugins
+2026-06-15 10:41:45,557 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:41:45,557 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:41:45,773 | INFO | A request to update a book has been received.
+2026-06-15 10:41:45,843 | ERROR | This id 3 does not exist in the system.
+2026-06-15 10:42:10,116 | INFO | A request to lend a book to a member has been received.
+2026-06-15 10:43:05,216 | INFO | package: mysql.connector.plugins
+2026-06-15 10:43:05,216 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:43:05,216 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:43:13,043 | INFO | A request to lend a book to a member has been received.
+2026-06-15 10:43:16,263 | INFO | A request to lend a book to a member has been received.
+2026-06-15 10:43:19,072 | INFO | A request to lend a book to a member has been received.
+2026-06-15 10:43:21,557 | INFO | A request to lend a book to a member has been received.
+2026-06-15 10:45:01,892 | INFO | package: mysql.connector.plugins
+2026-06-15 10:45:01,892 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:45:01,892 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:45:08,876 | INFO | package: mysql.connector.plugins
+2026-06-15 10:45:08,876 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:45:08,876 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:45:12,319 | INFO | A request to lend a book to a member has been received.
+2026-06-15 10:45:12,498 | ERROR | Member 2 is inactive.
+2026-06-15 10:45:43,172 | INFO | A request to return a borrowed book has been received.
+2026-06-15 10:45:43,362 | ERROR | The book 2 is not on loan to member 5.
+2026-06-15 10:45:51,613 | INFO | A request to return a borrowed book has been received.
+2026-06-15 10:45:51,792 | ERROR | The book 1 is not on loan to member 5.
+2026-06-15 10:46:11,878 | INFO | A request to show all members has been received.
+2026-06-15 10:46:11,878 | INFO | All members have been successfully introduced.
+2026-06-15 10:46:35,547 | INFO | Request to add a new member has been received.
+2026-06-15 10:46:35,547 | INFO | New member created successfully
+2026-06-15 10:47:01,212 | INFO | Request to show friend ID received
+2026-06-15 10:47:01,277 | INFO | The member was successfully introduced.
+2026-06-15 10:47:07,716 | INFO | Request to show friend ID received
+2026-06-15 10:47:07,777 | INFO | The member was successfully introduced.
+2026-06-15 10:47:25,999 | INFO | A request to update a member has been received.
+2026-06-15 10:47:38,621 | INFO | A request to update a member has been received.
+2026-06-15 10:48:54,853 | INFO | A request to make a member inactive has been received.
+2026-06-15 10:48:54,923 | INFO | The member 1 is inactive.
+2026-06-15 10:49:06,968 | INFO | A request to become an active member has been received.
+2026-06-15 10:49:07,034 | INFO | The member 1 is active.
+2026-06-15 10:49:22,935 | INFO | A request to display a summary report has been received.
+2026-06-15 10:49:22,935 | INFO | Summary report displayed successfully
+2026-06-15 10:49:38,294 | INFO | A request has been received to display the books by genre.
+2026-06-15 10:49:38,294 | INFO | The genres were successfully presented
+2026-06-15 10:50:11,307 | INFO | A request has been received to display the books by genre.
+2026-06-15 10:50:11,307 | INFO | The request is accompanied by the genre The genre were successfully displayed
+2026-06-15 10:50:35,347 | INFO | A request to display the most active member has been received.
+2026-06-15 10:50:35,347 | INFO | The most active member was successfully introduced.
+2026-06-15 10:51:58,870 | INFO | package: mysql.connector.plugins
+2026-06-15 10:51:58,871 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:51:58,871 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:52:04,646 | INFO | package: mysql.connector.plugins
+2026-06-15 10:52:04,647 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:52:04,647 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:52:06,358 | INFO | package: mysql.connector.plugins
+2026-06-15 10:52:06,358 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:52:06,358 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:52:09,831 | INFO | package: mysql.connector.plugins
+2026-06-15 10:52:09,831 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:52:09,831 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:52:16,868 | INFO | package: mysql.connector.plugins
+2026-06-15 10:52:16,869 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:52:16,869 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:52:40,432 | INFO | package: mysql.connector.plugins
+2026-06-15 10:52:40,432 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:52:40,432 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:53:04,735 | INFO | package: mysql.connector.plugins
+2026-06-15 10:53:04,736 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:53:04,736 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:53:29,122 | INFO | A request to update a member has been received.
+2026-06-15 10:53:49,536 | INFO | package: mysql.connector.plugins
+2026-06-15 10:53:49,536 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:53:49,536 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:53:50,385 | INFO | package: mysql.connector.plugins
+2026-06-15 10:53:50,386 | INFO | plugin_name: caching_sha2_password
+2026-06-15 10:53:50,386 | INFO | AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 10:53:56,923 | INFO | A request to update a member has been received.

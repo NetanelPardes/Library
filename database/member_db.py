@@ -21,19 +21,22 @@ class Member:
         """
         Creates a new member in the members table.
         """
-        conn = self.db.get_connection()
-        cursor = conn.cursor()
+        try:
+            conn = self.db.get_connection()
+            cursor = conn.cursor()
 
-        cursor.execute("INSERT INTO members (name , email , is_active , total_borrows) VALUES (%s, %s, %s, %s)" ,(data['name'],data['email'], True,0))
-            
-        conn.commit()
-            
-        new_id = cursor.lastrowid
-            
-        cursor.close()
-        conn.close()
-            
-        return new_id
+            cursor.execute("INSERT INTO members (name , email , is_active , total_borrows) VALUES (%s, %s, %s, %s)" ,(data['name'],data['email'], True,0))
+                
+            conn.commit()
+                
+            new_id = cursor.lastrowid
+                
+            cursor.close()
+            conn.close()
+                
+            return new_id
+        except:
+            raise HTTPException(status_code=422,detail="The data entered for the member is invalid.")
 
     def get_all_members(self):
         """
@@ -71,23 +74,26 @@ class Member:
         """
         Updates the given fields of a member by its ID.
         """
-        conn = self.db.get_connection()
-        cursor = conn.cursor(dictionary=True)
+        try:
+            conn = self.db.get_connection()
+            cursor = conn.cursor(dictionary=True)
 
-        set_parts = [f"{key} = %s" for key in data.keys()]
-        set_cluse = " ,".join(set_parts)
-        sql = f"UPDATE members set {set_cluse} WHERE id = %s"
-        val = list(data.values()) + [id]
-        cursor.execute(sql,val)
+            set_parts = [f"{key} = %s" for key in data.keys()]
+            set_cluse = " ,".join(set_parts)
+            sql = f"UPDATE members set {set_cluse} WHERE id = %s"
+            val = list(data.values()) + [id]
+            cursor.execute(sql,val)
 
-        conn.commit()
+            conn.commit()
 
-        changed = cursor.rowcount > 0
+            changed = cursor.rowcount > 0
 
-        cursor.close()
-        conn.close()
+            cursor.close()
+            conn.close()
 
-        return changed
+            return changed
+        except:
+            raise HTTPException(status_code=422,detail="The data entered for the member is invalid.")
     
     def deactivate_member(self,id):
         """
@@ -166,7 +172,7 @@ class Member:
 
         return member[0]
     
-    def is_active(self,id):
+    def is_member_active(self,id):
         """
         Checks if a member is currently active.
         """
@@ -174,7 +180,6 @@ class Member:
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT * FROM members WHERE id = %s AND is_active = %s" , (id,1))
-
 
         member = cursor.fetchone()
 
