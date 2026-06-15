@@ -1,0 +1,76 @@
+2026-06-15 09:39:34,865 | INFO |Initialize a book variable
+2026-06-15 09:39:34,899 | INFO |Initialize a book variable
+2026-06-15 09:39:34,995 | INFO |package: mysql.connector.plugins
+2026-06-15 09:39:34,995 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:39:34,995 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:39:49,309 | INFO |Initialize a book variable
+2026-06-15 09:39:49,343 | INFO |Initialize a book variable
+2026-06-15 09:39:49,458 | INFO |package: mysql.connector.plugins
+2026-06-15 09:39:49,459 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:39:49,459 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:39:50,191 | INFO |Initialize a book variable
+2026-06-15 09:39:50,239 | INFO |Initialize a book variable
+2026-06-15 09:39:50,352 | INFO |package: mysql.connector.plugins
+2026-06-15 09:39:50,352 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:39:50,352 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:40:39,641 | INFO |Initialize a book variable
+2026-06-15 09:40:39,676 | INFO |Initialize a book variable
+2026-06-15 09:40:39,788 | INFO |package: mysql.connector.plugins
+2026-06-15 09:40:39,788 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:40:39,788 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:40:40,522 | INFO |Initialize a book variable
+2026-06-15 09:40:40,556 | INFO |Initialize a book variable
+2026-06-15 09:40:40,650 | INFO |package: mysql.connector.plugins
+2026-06-15 09:40:40,650 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:40:40,650 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:41:13,764 | INFO |Initialize a book variable
+2026-06-15 09:41:13,820 | INFO |Initialize a book variable
+2026-06-15 09:41:13,933 | INFO |package: mysql.connector.plugins
+2026-06-15 09:41:13,933 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:41:13,933 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:41:28,069 | INFO |Initialize a book variable
+2026-06-15 09:41:28,105 | INFO |Initialize a book variable
+2026-06-15 09:41:28,208 | INFO |package: mysql.connector.plugins
+2026-06-15 09:41:28,209 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:41:28,209 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:41:48,232 | INFO |Initialize a book variable
+2026-06-15 09:41:48,249 | INFO |Initialize a book variable
+2026-06-15 09:41:48,395 | INFO |package: mysql.connector.plugins
+2026-06-15 09:41:48,395 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:41:48,395 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:41:55,827 | INFO |Initialize a book variable
+2026-06-15 09:41:55,876 | INFO |Initialize a book variable
+2026-06-15 09:41:56,016 | INFO |package: mysql.connector.plugins
+2026-06-15 09:41:56,017 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:41:56,017 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:42:00,587 | INFO |Initialize a book variable
+2026-06-15 09:42:00,631 | INFO |Initialize a book variable
+2026-06-15 09:42:00,759 | INFO |package: mysql.connector.plugins
+2026-06-15 09:42:00,760 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:42:00,760 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:42:04,673 | INFO |Initialize a book variable
+2026-06-15 09:42:04,701 | INFO |Initialize a book variable
+2026-06-15 09:42:04,822 | INFO |package: mysql.connector.plugins
+2026-06-15 09:42:04,822 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:42:04,822 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:42:20,540 | INFO |package: mysql.connector.plugins
+2026-06-15 09:42:20,540 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:42:20,540 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:42:30,561 | INFO |package: mysql.connector.plugins
+2026-06-15 09:42:30,561 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:42:30,561 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:42:36,542 | INFO |package: mysql.connector.plugins
+2026-06-15 09:42:36,543 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:42:36,543 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:42:43,624 | INFO |package: mysql.connector.plugins
+2026-06-15 09:42:43,625 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:42:43,625 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:42:45,977 | INFO |package: mysql.connector.plugins
+2026-06-15 09:42:45,977 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:42:45,977 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:42:47,914 | INFO |package: mysql.connector.plugins
+2026-06-15 09:42:47,914 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:42:47,914 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-06-15 09:42:53,294 | INFO |package: mysql.connector.plugins
+2026-06-15 09:42:53,295 | INFO |plugin_name: caching_sha2_password
+2026-06-15 09:42:53,295 | INFO |AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin

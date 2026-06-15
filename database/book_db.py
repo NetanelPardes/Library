@@ -2,7 +2,10 @@ import mysql.connector
 from fastapi import HTTPException
 from database.db_connection import DBconnection
 from database.member_db import Member
+from logs.log_config import logger
+import logging
 
+logger = logging.getLogger(__name__)
 optional_genre =  ['Fiction' , 'Non-Fiction' , 'Science' , 'History' , 'Other']
 
 class Book:

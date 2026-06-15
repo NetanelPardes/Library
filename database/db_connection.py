@@ -1,4 +1,8 @@
 import mysql.connector
+from logs.log_config import logger
+import logging
+
+logger = logging.getLogger(__name__)
 
 class DBconnection:
     def __init__(self):

@@ -1,6 +1,10 @@
 import mysql.connector
 from fastapi import HTTPException
 from database.db_connection import DBconnection
+from logs.log_config import logger
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Member:
     def __init__(self,name =None,email=None):

@@ -8,6 +8,7 @@ from routes.report_routes import router as report_routes
 
 app = FastAPI()
 
+
 app.include_router(book_routes)
 app.include_router(member_routes)
 app.include_router(report_routes)
