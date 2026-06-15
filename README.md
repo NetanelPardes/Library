@@ -7,6 +7,11 @@ The program manages the library's books and subscriptions.
 
 ## The code for creating a Docker with a connection to SQL
 
+## Installation first
+```bash
+pip freeze > requirements.txt
+```
+
 ```
 Open the Docker software on your computer.
 ```
